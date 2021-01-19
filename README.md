@@ -39,6 +39,6 @@ Three endpoints have been developed.
 
 ### Built With
 
-Built using .Net Core 5 WebAPI, C#
+Built using .Net Core 5 WebAPI, C# and the WebAPI is deployed to Azure WebAPP.
 
 The services will call underlying service using the provided token.
