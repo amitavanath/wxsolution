@@ -21,4 +21,13 @@
     <ProjectReference Include="../wxapichallenge/wxapichallenge.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Products.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ProductsTrolleyItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

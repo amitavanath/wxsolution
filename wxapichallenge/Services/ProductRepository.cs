@@ -18,7 +18,7 @@ namespace wxapichallenge.Services
         public async Task<IEnumerable<Product>> GetProducts(SortResourceParameter sortResourceParameters)
         {
             IEnumerable<Product> gainStrings = await _context.GetProductsAsync();
-            // var gainStrings = _context.GetProductsAsync().Select(t => t.Result).ToList();
+  
             if(sortResourceParameters.sortOption.ToString() == "Ascending")
             {
                 return gainStrings.ToList().OrderBy(product => product.Name);
