@@ -17,27 +17,21 @@ namespace wxapichallenge.Services
 
         public async Task<IEnumerable<Product>> GetProducts(SortResourceParameter sortResourceParameters)
         {
-            IEnumerable<Product> gainStrings = await _context.GetProductsAsync();
-  
-            if(sortResourceParameters.sortOption.ToString() == "Ascending")
-            {
-                return gainStrings.ToList().OrderBy(product => product.Name);
-            }
-            else if(sortResourceParameters.sortOption.ToString() == "Descending")
-            {
-                return gainStrings.ToList().OrderByDescending(product => product.Name);
-            }
-            else if(sortResourceParameters.sortOption.ToString() == "Low")
-            {
-                return gainStrings.ToList().OrderBy(product => product.Price);
-            }
-            else if(sortResourceParameters.sortOption.ToString() == "High")
-            {
-                return gainStrings.ToList().OrderByDescending(product => product.Price);
-            }
+            IEnumerable<Product> productsUnsorted = await _context.GetProductsAsync();
 
-            return gainStrings;
-            
+            switch (sortResourceParameters.sortOption.ToString())
+            {
+                case "Ascending":
+                    return productsUnsorted.ToList().OrderBy(product => product.Name);
+                case "Descending":
+                    return productsUnsorted.ToList().OrderByDescending(product => product.Name);
+                case "Low":
+                    return productsUnsorted.ToList().OrderBy(product => product.Price);
+                case "High":
+                    return productsUnsorted.ToList().OrderByDescending(product => product.Price);
+                default:
+                    return productsUnsorted;
+            }
         }
 
         public Task<IEnumerable<ShopperHistory>> GetShopperHistories()
