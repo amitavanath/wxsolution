@@ -34,8 +34,6 @@ namespace wxapichallenge
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IServiceContext, ServiceContext>();
-
-            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
             services.AddSwaggerGen(c =>
             {
