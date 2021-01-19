@@ -34,9 +34,19 @@ namespace wxapichallenge.Services
             }
         }
 
-        public Task<IEnumerable<ShopperHistory>> GetShopperHistories()
+        public async Task<IEnumerable<Product>> GetPopularProductsFromShopperHistories()
         {
-            return _context.GetShopperHistoryAsync();
+            var allHistory = await _context.GetShopperHistoryAsync();
+            List<Product> allShopperHistoryProducts = allHistory.SelectMany(item => item.Products).ToList();
+            var popularList = allShopperHistoryProducts
+                                        .GroupBy(item => item.Name)
+                                        .OrderByDescending(item => item.Count())
+                                        .Select(item => new Product { 
+                                                                        Name = item.First().Name, 
+                                                                        Price = item.First().Price, 
+                                                                        Quantity = item.First().Quantity });
+            
+            return popularList;
         }
 
         public Task<float> GetTrolleyTotalAsync(TrolleyItemsForPostDto trolleyItemsForPostDto)

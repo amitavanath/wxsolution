@@ -30,7 +30,7 @@ namespace wxapichallenge.Controllers
 
         private async Task<IActionResult> GetRecommendedProducts(SortResourceParameter sortResourceParameter)
         {
-            var shopperHistories = await _productRepository.GetShopperHistories();
+            var shopperHistories = await _productRepository.GetPopularProductsFromShopperHistories();
             return Ok(shopperHistories);
         }
     }

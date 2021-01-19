@@ -22,8 +22,9 @@ namespace wxapichallenge.Tests
        
 
         [Fact]
-        public async void GetSortedProducts_WhenCalled_ReturnsOkResult()
+        public async void GetSortedProducts_WhenCalled_SortOptionAscending_ReturnsNotNullResult()
         {
+            //Arrange
             var _serviceContextMock = new Mock<IServiceContext>();
             _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
 
@@ -32,6 +33,114 @@ namespace wxapichallenge.Tests
             SortResourceParameter sortParameter = new SortResourceParameter
             {
                 sortOption = SortOption.Ascending
+            };
+
+            var result = _productRepository.GetProducts(sortParameter);
+
+            SortController _sortController = new SortController(_productRepository);
+
+            //Act
+            var actionResult = await _sortController.GetSortedParams(sortParameter) as OkObjectResult;
+
+            //Assert
+            Assert.NotNull(actionResult);
+
+
+        }
+
+        [Fact]
+        public async void GetSortedProducts_WhenCalled_SortOptionDescending_ReturnsNotNullResult()
+        {
+            //Arrange
+            var _serviceContextMock = new Mock<IServiceContext>();
+            _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
+
+            IProductRepository _productRepository = new ProductRepository(_serviceContextMock.Object);
+
+            SortResourceParameter sortParameter = new SortResourceParameter
+            {
+                sortOption = SortOption.Descending
+            };
+
+            var result = _productRepository.GetProducts(sortParameter);
+
+            SortController _sortController = new SortController(_productRepository);
+
+            //Act
+            var actionResult = await _sortController.GetSortedParams(sortParameter) as OkObjectResult;
+
+            //Assert
+            Assert.NotNull(actionResult);
+
+
+        }
+
+        [Fact]
+        public async void GetSortedProducts_WhenCalled_SortOptionLow_ReturnsNotNullResult()
+        {
+            //Arrange
+            var _serviceContextMock = new Mock<IServiceContext>();
+            _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
+
+            IProductRepository _productRepository = new ProductRepository(_serviceContextMock.Object);
+
+            SortResourceParameter sortParameter = new SortResourceParameter
+            {
+                sortOption = SortOption.Low
+            };
+
+            var result = _productRepository.GetProducts(sortParameter);
+
+            SortController _sortController = new SortController(_productRepository);
+
+            //Act
+            var actionResult = await _sortController.GetSortedParams(sortParameter) as OkObjectResult;
+
+            //Assert
+            Assert.NotNull(actionResult);
+
+
+        }
+
+        [Fact]
+        public async void GetSortedProducts_WhenCalled_SortOptionHigh_ReturnsNotNullResult()
+        {
+            //Arrange
+            var _serviceContextMock = new Mock<IServiceContext>();
+            _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
+
+            IProductRepository _productRepository = new ProductRepository(_serviceContextMock.Object);
+
+            SortResourceParameter sortParameter = new SortResourceParameter
+            {
+                sortOption = SortOption.High
+            };
+
+            var result = _productRepository.GetProducts(sortParameter);
+
+            SortController _sortController = new SortController(_productRepository);
+
+            //Act
+            var actionResult = await _sortController.GetSortedParams(sortParameter) as OkObjectResult;
+
+            //Assert
+            Assert.NotNull(actionResult);
+
+
+        }
+
+        [Fact]
+        public async void GetSortedProducts_WhenCalled_SortOptionRecommended_ReturnsNotNullResult()
+        {
+            //Arrange
+            var _serviceContextMock = new Mock<IServiceContext>();
+            _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
+
+            IProductRepository _productRepository = new ProductRepository(_serviceContextMock.Object);
+
+            SortResourceParameter sortParameter = new SortResourceParameter
+            {
+                sortOption = SortOption.Recommended
             };
 
             var result = _productRepository.GetProducts(sortParameter);

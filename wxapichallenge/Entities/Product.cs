@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace wxapichallenge.Entities
 {
     public class Product
@@ -5,5 +7,6 @@ namespace wxapichallenge.Entities
         public float Quantity { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
+        
     }
 }

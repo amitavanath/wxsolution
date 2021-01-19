@@ -13,5 +13,7 @@ namespace wxapichallenge.Services
          public Task<IEnumerable<ShopperHistory>> GetShopperHistories();
 
          public Task<float> GetTrolleyTotalAsync(TrolleyItemsForPostDto trolleyItemsForPostDto);
+
+        public Task<IEnumerable<Product>> GetPopularProductsFromShopperHistories();
     }
 }
