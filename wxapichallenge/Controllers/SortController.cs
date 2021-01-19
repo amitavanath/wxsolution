@@ -17,6 +17,13 @@ namespace wxapichallenge.Controllers
             _productRepository = productRepository;
         }
 
+        /// <summary>
+        /// This API provides a range of sorting options.
+        /// This call "products" resource to get a list of available products.
+        /// This endpoint accepts a query string parameter called "sortOption"
+        /// with strings Low, High, Ascending, Descending and Recommended.
+        /// </summary>
+        /// <param name="sortOption">Low, High, Ascending, Descending, Recommended</param>
         [HttpGet]
         public Task<IActionResult> GetSortedParams([FromQuery] SortResourceParameter 
             sortResourceParameter) => sortResourceParameter.sortOption.ToString() == "Recommended" ?

@@ -16,6 +16,10 @@ namespace wxapichallenge.Controllers
             _productRepository = productRepository;
         }
 
+        /// <summary>
+        /// This API provides lowest possible total based on provided 
+        /// lists of prices, specials and quantities.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetTrolleyTotal(TrolleyItemsForPostDto trolleyItemsForPostDto)
         {
