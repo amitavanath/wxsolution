@@ -22,11 +22,17 @@ namespace wxapichallenge.Tests
  
             var configurationSectionToken = new Mock<IConfigurationSection>();
             configurationSectionToken.Setup(a => a.Value).Returns("7b8c0ec1-9ea6-4a11-8d2e-0b23759e6ae1");
-            
-            configuration.Setup(a => a.GetSection("UserToken"))
-                            .Returns(configurationSectionToken.Object); 
 
-            
+            var configurationSectionUserName = new Mock<IConfigurationSection>();
+            configurationSectionUserName.Setup(a => a.Value).Returns("Amitava Nath");
+
+            configuration.Setup(a => a.GetSection("UserToken"))
+                            .Returns(configurationSectionToken.Object);
+
+            configuration.Setup(a => a.GetSection("UserName"))
+                            .Returns(configurationSectionUserName.Object);
+
+
             UserController user = new UserController(configuration.Object);
             
             var response = user.GetToken();
