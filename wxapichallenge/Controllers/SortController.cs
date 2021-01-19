@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using wxapichallenge.Entities;
 using wxapichallenge.ResourceParameters;
 using wxapichallenge.Services;
 
@@ -30,8 +28,7 @@ namespace wxapichallenge.Controllers
             return Ok(products);
         }
 
-        private async Task<IActionResult> GetRecommendedProducts(SortResourceParameter 
-            sortResourceParameter)
+        private async Task<IActionResult> GetRecommendedProducts(SortResourceParameter sortResourceParameter)
         {
             var shopperHistories = await _productRepository.GetShopperHistories();
             return Ok(shopperHistories);

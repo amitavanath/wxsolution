@@ -16,13 +16,6 @@ namespace wxapichallenge.Controllers
             _productRepository = productRepository;
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> GetTrolleyTotal(TrolleyItemsForPostDto trolleyItemsForPostDto)
-        // {
-        //     var result = await _productRepository.GetTrolleyTotalAsync(trolleyItemsForPostDto);
-        //     return Ok(result);
-        // }
-
         [HttpGet]
         public async Task<IActionResult> GetTrolleyTotal(TrolleyItemsForPostDto trolleyItemsForPostDto)
         {
