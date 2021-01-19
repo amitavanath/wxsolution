@@ -8,10 +8,10 @@ namespace wxapichallenge.Services
 {
     public interface IProductRepository
     {
-         public Task<IEnumerable<Product>> GetProducts(SortResourceParameter sortResourceParameters);
+         public Task<IEnumerable<Product>> GetProductsAsync(SortResourceParameter sortResourceParameters);
 
          public Task<float> GetTrolleyTotalAsync(TrolleyItemsForPostDto trolleyItemsForPostDto);
 
-        public Task<IEnumerable<Product>> GetPopularProductsFromShopperHistories();
+        public Task<IEnumerable<Product>> GetPopularProductsFromShopperHistoriesAsync();
     }
 }

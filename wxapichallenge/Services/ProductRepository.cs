@@ -15,7 +15,7 @@ namespace wxapichallenge.Services
         public ProductRepository(IServiceContext context) => _context = context
             ?? throw new System.ArgumentNullException(nameof(context));
 
-        public async Task<IEnumerable<Product>> GetProducts(SortResourceParameter sortResourceParameters)
+        public async Task<IEnumerable<Product>> GetProductsAsync(SortResourceParameter sortResourceParameters)
         {
             IEnumerable<Product> productsUnsorted = await _context.GetProductsAsync();
 
@@ -34,7 +34,7 @@ namespace wxapichallenge.Services
             }
         }
 
-        public async Task<IEnumerable<Product>> GetPopularProductsFromShopperHistories()
+        public async Task<IEnumerable<Product>> GetPopularProductsFromShopperHistoriesAsync()
         {
             var allHistory = await _context.GetShopperHistoryAsync();
             List<Product> allShopperHistoryProducts = allHistory.SelectMany(item => item.Products).ToList();

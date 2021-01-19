@@ -35,7 +35,7 @@ namespace wxapichallenge.Tests
                 sortOption = SortOption.Ascending
             };
 
-            var result = _productRepository.GetProducts(sortParameter);
+            var result = _productRepository.GetProductsAsync(sortParameter);
 
             SortController _sortController = new SortController(_productRepository);
 
@@ -62,7 +62,7 @@ namespace wxapichallenge.Tests
                 sortOption = SortOption.Descending
             };
 
-            var result = _productRepository.GetProducts(sortParameter);
+            var result = _productRepository.GetProductsAsync(sortParameter);
 
             SortController _sortController = new SortController(_productRepository);
 
@@ -89,7 +89,7 @@ namespace wxapichallenge.Tests
                 sortOption = SortOption.Low
             };
 
-            var result = _productRepository.GetProducts(sortParameter);
+            var result = _productRepository.GetProductsAsync(sortParameter);
 
             SortController _sortController = new SortController(_productRepository);
 
@@ -116,7 +116,7 @@ namespace wxapichallenge.Tests
                 sortOption = SortOption.High
             };
 
-            var result = _productRepository.GetProducts(sortParameter);
+            var result = _productRepository.GetProductsAsync(sortParameter);
 
             SortController _sortController = new SortController(_productRepository);
 
@@ -134,7 +134,7 @@ namespace wxapichallenge.Tests
         {
             //Arrange
             var _serviceContextMock = new Mock<IServiceContext>();
-            _serviceContextMock.Setup(a => a.GetProductsAsync()).Returns(GetProductsAsync());
+            _serviceContextMock.Setup(a => a.GetShopperHistoryAsync()).Returns(GetShopperHistoriesAsync());
 
             IProductRepository _productRepository = new ProductRepository(_serviceContextMock.Object);
 
@@ -143,7 +143,7 @@ namespace wxapichallenge.Tests
                 sortOption = SortOption.Recommended
             };
 
-            var result = _productRepository.GetProducts(sortParameter);
+            var result = _productRepository.GetPopularProductsFromShopperHistoriesAsync();
 
             SortController _sortController = new SortController(_productRepository);
 
@@ -164,6 +164,16 @@ namespace wxapichallenge.Tests
             productList = JsonConvert.DeserializeObject<List<Product>>(jsonData);
 
             return productList;
+        }
+
+        public async Task<IEnumerable<ShopperHistory>> GetShopperHistoriesAsync()
+        {
+            var jsonData = await File.ReadAllTextAsync("ShopperHistory.json");
+
+            List<ShopperHistory> shopperHistories = new List<ShopperHistory>();
+            shopperHistories = JsonConvert.DeserializeObject<List<ShopperHistory>>(jsonData);
+
+            return shopperHistories;
         }
 
     }

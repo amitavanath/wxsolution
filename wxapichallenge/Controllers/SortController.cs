@@ -24,13 +24,13 @@ namespace wxapichallenge.Controllers
         
         private async Task<IActionResult> GetSortedProducts(SortResourceParameter sortResourceParameter)
         {
-            var products = await _productRepository.GetProducts(sortResourceParameter);
+            var products = await _productRepository.GetProductsAsync(sortResourceParameter);
             return Ok(products);
         }
 
         private async Task<IActionResult> GetRecommendedProducts(SortResourceParameter sortResourceParameter)
         {
-            var shopperHistories = await _productRepository.GetPopularProductsFromShopperHistories();
+            var shopperHistories = await _productRepository.GetPopularProductsFromShopperHistoriesAsync();
             return Ok(shopperHistories);
         }
     }
