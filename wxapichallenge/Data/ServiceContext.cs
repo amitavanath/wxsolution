@@ -29,7 +29,11 @@ namespace wxapichallenge.Data
                 using (var response = await httpClient.GetAsync(GetExternalEndPointWithTokenForProduct))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    productList = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+
+                    if(apiResponse != null)
+                        productList = JsonConvert.DeserializeObject<List<Product>>(apiResponse);
+                    else
+                        throw new HttpRequestException("Unable to reach underlying service.");
                 }
                 
                 return productList;
@@ -44,7 +48,11 @@ namespace wxapichallenge.Data
                 using (var response = await httpClient.GetAsync(GetExternalEndPointWithTokenForShopperHistory))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    shopperHistoryList = JsonConvert.DeserializeObject<List<ShopperHistory>>(apiResponse);
+
+                    if(apiResponse != null)
+                        shopperHistoryList = JsonConvert.DeserializeObject<List<ShopperHistory>>(apiResponse);
+                    else
+                        throw new HttpRequestException("Unable to reach underlying service.");
                 }
 
                 return shopperHistoryList;
@@ -65,7 +73,13 @@ namespace wxapichallenge.Data
                 using (var response = await httpClient.PostAsync(GetExternalEndPointWithTokenForTrolleyTotal,
                                             stringContent))
                 {
-                    return float.Parse(await response.Content.ReadAsStringAsync());
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    if (result != null)
+                        return float.Parse(result);
+                    else
+                        throw new HttpRequestException("Unable to reach underlying service.");
+
                 }
             }
         }
